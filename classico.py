@@ -1,6 +1,5 @@
 import util
 
-
 def start_game(simbolos):
     print(simbolos[0] + " Jogador 1 \n" + simbolos[1] + " Jogador 2 \n")
     tabuleiro = util.cria_tabuleiro()
@@ -9,8 +8,8 @@ def start_game(simbolos):
 
 def jogada(round, simbolos, tabuleiro):
     print("Turno do jogador " + str(round + 1))
-    linha = int(input("Linha: "))
-    coluna = int(input("Coluna: "))
+    linha = out_of_bounds(int(input("Linha: ")))
+    coluna = out_of_bounds(int(input("Coluna: ")))
     new_tab = util.atualiza_tabuleiro(tabuleiro, linha, coluna, simbolos[round])
     if util.tem_vencedor(new_tab, simbolos[round]):
         exit()
@@ -24,3 +23,11 @@ def muda_round(round):
     else:
         round -= 1
     return round
+
+def out_of_bounds(numero):
+    if numero > 2:
+        return 2
+    elif numero < 0:
+        return 0
+    else:
+        return numero
